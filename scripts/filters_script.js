@@ -142,7 +142,7 @@ function constructSearchURL() {
   const params = new URLSearchParams(window.location.search);
 
   // Preserve the `q` parameter if it exists, otherwise leave it out
-  const query = params.get("q");
+  const query = params.get("q") || "+";
 
   // Add or update price range in the parameters
   params.set("priceMin", priceMin.value);

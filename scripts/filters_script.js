@@ -27,13 +27,14 @@ filterSections.forEach((header) => {
 clearFiltersBtn.addEventListener("click", function () {
   // Retrieve the current `q` parameter
   const params = new URLSearchParams(window.location.search);
-  const query = params.get("q") || "+";;
+  const query = params.get("q");
 
   // Redirect to the `searching.html` page with only the `q` parameter
   if (query) {
     window.location.href = `searching.html?q=${query}`;
-  } else {
-    window.location.href = "searching.html"; // Fallback if `q` is missing
+  } 
+  else {
+    window.location.href = "searching.html?q=%20"; // Fallback if `q` is missing
   }
 });
 
@@ -232,7 +233,7 @@ function constructSearchURL() {
 
   // If `q` parameter doesn't exist, remove it from the URL
   if (!query) {
-    newURL = `searching.html?${params.toString().replace(/&?q=[^&]*/, "+")}`; // Remove `q` if it doesn't exist
+    newURL = `searching.html?${params.toString().replace(/&?q=[^&]*/, "q=%20")}`; // Remove `q` if it doesn't exist
   }
   
   // Redirect to the new URL

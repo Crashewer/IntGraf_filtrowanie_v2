@@ -29,13 +29,14 @@ clearFiltersBtn.addEventListener("click", function () {
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q");
 
-  // Redirect to the `searching.html` page with only the `q` parameter
-  if (query) {
-    window.location.href = `searching.html?q=${query}`;
-  } 
-  else {
-    window.location.href = "searching.html?q=%20"; // Fallback if `q` is missing
+  let newURL = `searching.html?q=${query}`
+
+  if (!query) {
+    newURL = newURL.replace(/&?q=[^&]*/, "q=%20"); // Remove `q` if it doesn't exist
   }
+  
+  // Redirect to the `searching.html` page with only the `q` parameter
+  window.location.href = newURL 
 });
 
 // Update price values dynamically

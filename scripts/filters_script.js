@@ -27,7 +27,7 @@ filterSections.forEach((header) => {
 clearFiltersBtn.addEventListener("click", function () {
   // Retrieve the current `q` parameter
   const params = new URLSearchParams(window.location.search);
-  const query = params.get("q");
+  const query = params.get("q") || "+";;
 
   // Redirect to the `searching.html` page with only the `q` parameter
   if (query) {

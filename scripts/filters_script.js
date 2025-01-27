@@ -142,7 +142,7 @@ function constructSearchURL() {
   const params = new URLSearchParams(window.location.search);
 
   // Preserve the `q` parameter if it exists, otherwise leave it out
-  const query = params.get("q") || "+";
+  const query = params.get("q"); 
 
   // Add or update price range in the parameters
   params.set("priceMin", priceMin.value);
@@ -226,10 +226,15 @@ function constructSearchURL() {
   } else {
     params.delete("filters"); // Remove filters if none are selected
   }
-
+  
   // Construct the new URL with preserved filters
   let newURL = `searching.html?${params.toString()}`;
 
+  // If `q` parameter doesn't exist, remove it from the URL
+  if (!query) {
+    newURL = `searching.html?${params.toString().replace(/&?q=[^&]*/, "+")}`; // Remove `q` if it doesn't exist
+  }
+  
   // Redirect to the new URL
   window.location.href = newURL;
 }
